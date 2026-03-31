@@ -1,5 +1,5 @@
 # Agent Architecture
 
-This folder documents my preferences for agent design, orchestration patterns, tool boundaries, and context management.
+This domain captures how I want to reason about agent systems without turning them into hype objects.
 
-It is one domain in this repository, not the identity of the repository itself.
+The emphasis is on context management, retrieval discipline, tool boundaries, evaluation, and operational clarity. This is a doctrine in progress rather than a claim of mastery.

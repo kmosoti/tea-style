@@ -1,5 +1,5 @@
 # Observability
 
-This folder documents my preferences for observability systems, telemetry pipelines, diagnostics, operational review, and reliability-oriented design.
+This domain captures how I prefer observability platforms and telemetry systems to be designed and reviewed.
 
-It should capture how I think about signal quality, capacity, triage, platform ownership, and maintainable operations.
+The focus is on signal quality, diagnosability, platform understanding, capacity reasoning, and operational maintainability.

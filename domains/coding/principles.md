@@ -1,24 +1,15 @@
 # Coding Principles
 
-## Intent
-This section captures how I prefer code to be designed and evaluated.
-
 ## Core preferences
-- Strong typing should clarify behavior, not decorate it.
-- Interfaces matter more than concrete implementations.
-- Encapsulation should reduce cognitive load.
-- Configuration and execution should be separated.
-- Code should be explicit enough to review without guesswork.
+- Use Python where it fits the problem.
+- Prefer strong typing where it improves clarity.
+- Keep modules black-boxed and interfaces narrow.
+- Separate configuration from execution logic.
+- Use object-oriented structure when it improves consistency and maintainability.
+- Prefer modular extension over monolithic growth.
 
-## What good looks like
-- Narrow public interfaces
-- Clear data models
-- Deterministic behavior
-- Focused functions and classes
-- Tests around important logic
+## Review standard
+Good code should be easy to trace, easy to test, and hard to misuse.
 
-## What to avoid
-- Loose dictionaries where models should exist
-- Hidden side effects
-- Overly clever abstractions
-- Architecture that is harder to understand than the problem
+## Tradeoff
+Abstraction is useful when it removes repeated decisions. It is harmful when it hides the actual behavior of the system.
