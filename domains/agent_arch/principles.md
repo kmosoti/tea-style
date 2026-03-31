@@ -1,25 +1,11 @@
 # Agent Architecture Principles
 
-## Intent
-This section captures how I prefer agent based systems to be structured.
-
 ## Core preferences
-- Agent systems should have clear boundaries and responsibilities.
-- Tools should be explicit, narrow, and easy to reason about.
-- Context should be curated rather than bloated.
-- Orchestration should remain understandable under failure.
-- Agent behavior should be constrained by contracts and validation.
+- Prefer simple systems before multi-agent expansion.
+- Treat context as a design problem, not a dumping ground.
+- Keep tool exposure narrow and explicit.
+- Evaluate accuracy before scaling complexity.
+- Prefer open-source-friendly approaches where practical.
 
-## What good looks like
-- Clear separation between planner, executor, and tool layers when needed
-- Typed or otherwise validated boundaries
-- Observable execution paths
-- Minimal hidden state
-- Reusable domain specific tooling
-
-## What to avoid
-- One giant agent prompt pretending to be architecture
-- Undefined tool boundaries
-- Context sprawl
-- Silent failure modes
-- Magical autonomy without verification
+## Design stance
+The goal is not to build the most agentic system. The goal is to build systems that are clean, fast, consistent, and accurate enough to trust.

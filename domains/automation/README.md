@@ -1,5 +1,5 @@
 # Automation
 
-This folder documents my preferences for automation, configuration management, infrastructure logic, platform workflows, and operational design.
+This domain captures how I prefer automation and operations-as-code to be designed.
 
-It should include how I think about repeatability, safety, drift control, and orchestration.
+The emphasis is on idempotence, low drift, observable execution, source-of-truth discipline, and maintainability over cleverness.
