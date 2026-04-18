@@ -55,6 +55,19 @@ Each issue should include:
 
 Optional additions: dependencies, blockers, and sequencing notes.
 
+
+## Project field mapping
+When using the TEA Learning Lab project board, set fields explicitly:
+- **Status**: `Backlog` -> `Ready` -> `Doing` -> `Review` -> `Done`
+- **Track**: `Repo` for governance pages, `Doctrine` for domain doctrine pages, `Experiment` for lab/project pages
+- **Evidence**: `Writeup` for markdown doctrine work unless the issue explicitly requires code or benchmark output
+- **Difficulty**: numeric estimate used only for sequencing, not quality
+
+For umbrella issues, keep the parent open until child issues are in `Done`.
+
+## Issue linkage rule
+Each implementation PR should tie changes to issue numbers in title or body and include a short file-to-issue mapping in the summary.
+
 ## PR expectations
 - Prefer small, tightly scoped PRs.
 - Title should reference the issue or work item.
