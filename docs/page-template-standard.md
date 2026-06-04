@@ -15,12 +15,13 @@ A shared page shape improves consistency and makes pages easier for both enginee
 Use this order by default:
 1. Purpose
 2. Core claim
-3. Definitions
-4. Architecture / Mechanics
-5. Patterns
-6. Anti-patterns
-7. Examples
-8. Related pages
+3. Knowledge hooks
+4. Definitions
+5. Architecture / Mechanics
+6. Patterns
+7. Anti-patterns
+8. Examples
+9. Related pages
 
 ## Required vs optional
 ### Required sections
@@ -30,12 +31,15 @@ Use this order by default:
 - Related pages
 
 ### Optional sections
+- Knowledge hooks
 - Architecture / Mechanics
 - Patterns
 - Anti-patterns
 - Examples
 
 Optional sections should be omitted when they add no signal.
+
+Knowledge hooks are recommended for substantial doctrine pages. They should use plain Markdown and remain visible in GitHub rendering.
 
 ## Adaptation rules
 Adapt the template when page type requires it:
@@ -49,6 +53,7 @@ Do not reorder sections arbitrarily; keep the structure stable unless a page typ
 Apply this template to new doctrine/reference pages first. Existing legacy pages can be aligned incrementally when touched by scoped work.
 
 ## Related pages
-- `docs/writing/technical-writing-standards.md`
-- `docs/examples-and-diagrams-standard.md`
-- `docs/decisions/README.md`
+- [docs/writing/technical-writing-standards.md](writing/technical-writing-standards.md)
+- [docs/second-brain-markdown-standard.md](second-brain-markdown-standard.md)
+- [docs/examples-and-diagrams-standard.md](examples-and-diagrams-standard.md)
+- [docs/decisions/README.md](decisions/README.md)

@@ -109,7 +109,8 @@ Each subagent returns only:
 Subagents must not make architecture decisions unless explicitly requested.
 
 ## Related pages
-- `docs/repo-scope.md`
-- `docs/page-template-standard.md`
-- `docs/examples-and-diagrams-standard.md`
-- `docs/decisions/README.md`
+- [docs/repo-scope.md](repo-scope.md)
+- [docs/page-template-standard.md](page-template-standard.md)
+- [docs/second-brain-markdown-standard.md](second-brain-markdown-standard.md)
+- [docs/examples-and-diagrams-standard.md](examples-and-diagrams-standard.md)
+- [docs/decisions/README.md](decisions/README.md)

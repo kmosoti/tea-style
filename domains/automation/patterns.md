@@ -6,3 +6,9 @@
 - environment-aware execution
 - rollback-friendly changes
 - observable orchestration
+- plan and execute as separate phases
+- state machines for resumable workflows
+- validation gates before mutation
+- reconciliation loops after mutation
+- bounded concurrency and backpressure
+- compensation paths when rollback is not realistic

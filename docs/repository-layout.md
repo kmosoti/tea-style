@@ -25,6 +25,8 @@ It exists to document how I prefer to design, structure, and review work across 
   - How issues/PRs are prepared, executed, and reviewed.
 - `docs/page-template-standard.md`
   - Canonical structure for doctrine pages.
+- `docs/second-brain-markdown-standard.md`
+  - GitHub-native structure for maps of content, atomic pages, knowledge hooks, and related links.
 - `docs/examples-and-diagrams-standard.md`
   - Rules for useful examples and diagrams.
 - `docs/decisions/`
@@ -33,7 +35,7 @@ It exists to document how I prefer to design, structure, and review work across 
 ## Cross cutting doctrine
 
 - `docs/doctrines/`
-  - Cross domain doctrine such as TEA Style.
+  - Cross domain doctrine such as TEA Style and the engineering control spine.
 
 ## Standard for domain content
 

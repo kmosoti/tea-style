@@ -12,3 +12,6 @@
 - Is the side-effect boundary visible?
 - Is the dependency choice justified?
 - Does the abstraction remove real duplication?
+- Are invariants enforced in code?
+- Are read operations separated from mutation?
+- Are errors and results meaningful enough to drive policy?
