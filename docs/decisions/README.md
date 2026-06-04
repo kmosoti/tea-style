@@ -19,6 +19,9 @@ Use sequential filenames:
 
 Keep titles explicit and stable.
 
+## Decision index
+- [0001-adopt-github-native-second-brain-doctrine.md](0001-adopt-github-native-second-brain-doctrine.md)
+
 ## Decision record template
 Use this structure:
 
