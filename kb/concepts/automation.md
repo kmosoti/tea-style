@@ -4,6 +4,8 @@ title: Automation
 type: concept
 domain: automation
 status: active
+created: 2026-06-07
+updated: 2026-06-07
 summary: >
   Software-controlled execution of repeatable operational or engineering work.
 concepts:

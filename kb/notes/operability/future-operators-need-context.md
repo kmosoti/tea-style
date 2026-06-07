@@ -4,6 +4,8 @@ title: Future Operators Need Context
 type: note
 domain: operability
 status: active
+created: 2026-06-07
+updated: 2026-06-07
 summary: >
   Durable systems preserve enough context for future operators to diagnose and recover without rediscovery.
 concepts:

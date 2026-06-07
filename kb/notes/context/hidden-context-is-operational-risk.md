@@ -4,6 +4,8 @@ title: Hidden Context Is Operational Risk
 type: note
 domain: operability
 status: active
+created: 2026-06-07
+updated: 2026-06-07
 summary: >
   Knowledge that exists only in the original author's memory makes systems fragile.
 concepts:

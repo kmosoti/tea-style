@@ -4,6 +4,8 @@ title: Typed Encapsulated Architecture Style
 type: doctrine
 domain: repo-wide
 status: active
+created: 2026-06-07
+updated: 2026-06-07
 summary: >
   TEA is a decision style for explicit, modular, typed, reviewable, and durable systems.
 concepts:

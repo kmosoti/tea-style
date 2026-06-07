@@ -4,6 +4,8 @@ title: Mutation
 type: concept
 domain: automation
 status: active
+created: 2026-06-07
+updated: 2026-06-07
 summary: >
   An operation that changes system, repository, workflow, or external state.
 concepts:

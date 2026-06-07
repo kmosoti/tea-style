@@ -27,6 +27,7 @@ def validate_build_result(result: BuildResult, root: Path) -> ValidationReport:
     diagnostics.extend(_validate_acyclic_edges(graph, EdgeType.DEPENDS_ON))
     diagnostics.extend(_validate_acyclic_edges(graph, EdgeType.SUPERSEDES))
     diagnostics.extend(_validate_markdown_links(graph, root))
+    diagnostics.extend(_validate_timeline_dates(graph))
     diagnostics.extend(_validate_orphans(graph))
     diagnostics.extend(_validate_dense_links(graph))
     diagnostics.extend(_validate_related_to_overuse(graph))
@@ -107,6 +108,42 @@ def _validate_markdown_links(graph: KnowledgeGraph, root: Path) -> list[Diagnost
                         path=relative.as_posix(),
                     )
                 )
+    return diagnostics
+
+
+def _validate_timeline_dates(graph: KnowledgeGraph) -> list[Diagnostic]:
+    diagnostics: list[Diagnostic] = []
+    for node in graph.nodes.values():
+        if node.created is None:
+            diagnostics.append(
+                Diagnostic(
+                    severity=Severity.WARNING,
+                    code="missing-created-date",
+                    message=f"{node.id} missing created date",
+                    path=node.path.as_posix(),
+                    node_id=str(node.id),
+                )
+            )
+        if node.updated is None:
+            diagnostics.append(
+                Diagnostic(
+                    severity=Severity.WARNING,
+                    code="missing-updated-date",
+                    message=f"{node.id} missing updated date",
+                    path=node.path.as_posix(),
+                    node_id=str(node.id),
+                )
+            )
+        if node.created and node.updated and node.updated < node.created:
+            diagnostics.append(
+                Diagnostic(
+                    severity=Severity.ERROR,
+                    code="invalid-updated-date",
+                    message=f"{node.id} updated date is before created date",
+                    path=node.path.as_posix(),
+                    node_id=str(node.id),
+                )
+            )
     return diagnostics
 
 

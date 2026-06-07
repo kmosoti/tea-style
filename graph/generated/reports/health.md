@@ -4,7 +4,7 @@
 
 - Nodes: 48
 - Edges: 87
-- Chunks: 183
+- Chunks: 184
 - Notes: 7
 - Concepts: 16
 - Antipatterns: 4

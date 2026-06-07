@@ -4,6 +4,8 @@ title: Hallucinated Operational State
 type: antipattern
 domain: observability
 status: active
+created: 2026-06-07
+updated: 2026-06-07
 summary: >
   A human, agent, or tool claims system state without evidence from authoritative sources.
 concepts:

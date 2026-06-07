@@ -4,6 +4,8 @@ title: Context Regression
 type: concept
 domain: repo-wide
 status: active
+created: 2026-06-07
+updated: 2026-06-07
 summary: >
   Rediscovery of knowledge that should already exist as durable doctrine.
 concepts:

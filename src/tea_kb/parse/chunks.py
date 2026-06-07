@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from datetime import date
 from pathlib import Path
 
 from tea_kb.domain.enums import NodeType
@@ -20,6 +21,8 @@ def build_chunks(
     node_type: NodeType,
     outbound_edges: tuple[NodeId, ...],
     source_hash: str,
+    created: date | None,
+    updated: date | None,
 ) -> tuple[KnowledgeChunk, ...]:
     chunks: list[KnowledgeChunk] = []
     for section in sections:
@@ -38,6 +41,8 @@ def build_chunks(
                 node_type=node_type,
                 outbound_edges=outbound_edges,
                 source_hash=source_hash,
+                created=created,
+                updated=updated,
             )
         )
     return tuple(chunks)

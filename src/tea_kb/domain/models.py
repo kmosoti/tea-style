@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from datetime import date
 from pathlib import Path
 
 from tea_kb.domain.enums import EdgeType, NodeType
@@ -21,6 +22,8 @@ class KnowledgeNode:
     source_hash: str
     summary: str | None = None
     aliases: tuple[str, ...] = ()
+    created: date | None = None
+    updated: date | None = None
 
 
 @dataclass(frozen=True, slots=True)
@@ -44,6 +47,8 @@ class KnowledgeChunk:
     node_type: NodeType
     outbound_edges: tuple[NodeId, ...]
     source_hash: str
+    created: date | None = None
+    updated: date | None = None
 
 
 @dataclass(frozen=True, slots=True)
