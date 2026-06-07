@@ -1,21 +1,36 @@
 # tea-style
 
-`tea-style` is my personal engineering doctrine repository.
+`tea-style` is my personal engineering doctrine graph repository.
 
 TEA stands for **Typed Encapsulated Architecture Style**.
 
 TEA is a cross-domain doctrine for how I prefer to design, build, review, and reason about systems. It is not a framework and it is not tied to one vendor, product, or runtime.
 
-The repository is organized by peer domains such as coding, agent architecture, automation, and observability. Each domain captures principles, patterns, anti-patterns, tooling preferences, standards, and examples.
+The repository is organized as a Markdown-native doctrine graph. Markdown pages and frontmatter are the source of truth. The embedded Python lifecycle tool validates, builds, reports, visualizes, and exports the graph so humans and autonomous systems can reuse doctrine without repeating context.
 
-This is a living doctrine repo. The goal is not to collect loose notes. The goal is to maintain a clear and durable record of how I want technical work to be structured.
+This is a living doctrine repo with support tooling. The goal is not to collect loose notes or ship a product. The goal is to maintain a durable, inspectable, and reusable record of how I want technical work to be structured.
 
 ## Core navigation
 - [docs/repo-scope.md](docs/repo-scope.md)
 - [docs/work-operating-model.md](docs/work-operating-model.md)
 - [docs/second-brain-markdown-standard.md](docs/second-brain-markdown-standard.md)
+- [docs/standards/graph-knowledge-base-standard.md](docs/standards/graph-knowledge-base-standard.md)
 - [docs/page-template-standard.md](docs/page-template-standard.md)
 - [docs/examples-and-diagrams-standard.md](docs/examples-and-diagrams-standard.md)
 - [docs/decisions/README.md](docs/decisions/README.md)
 - [docs/repository-layout.md](docs/repository-layout.md)
 - [docs/doctrines/README.md](docs/doctrines/README.md)
+
+## Tooling
+The `tea-kb` CLI is bounded lifecycle tooling for the repository knowledge base.
+
+Common commands:
+- `uv run tea-kb validate`
+- `uv run tea-kb build`
+- `uv run tea-kb report`
+- `uv run tea-kb viz overview`
+
+Tea-themed aliases are available for human convenience:
+- `uv run tea-kb brew` for `build`
+- `uv run tea-kb taste` for `report`
+- `uv run tea-kb map overview` for `viz overview`
