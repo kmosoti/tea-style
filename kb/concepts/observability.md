@@ -4,6 +4,8 @@ title: Observability
 type: concept
 domain: observability
 status: active
+created: 2026-06-07
+updated: 2026-06-07
 summary: >
   The ability to understand system behavior from emitted evidence.
 concepts:

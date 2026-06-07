@@ -4,6 +4,8 @@ title: Undocumented Mutation
 type: antipattern
 domain: automation
 status: active
+created: 2026-06-07
+updated: 2026-06-07
 summary: >
   A tool mutates state without clear plan, boundary, evidence, or recovery path.
 concepts:

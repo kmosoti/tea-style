@@ -15,6 +15,8 @@ title: Evidence
 type: concept
 domain: test
 status: active
+created: 2026-06-07
+updated: 2026-06-07
 concepts:
   - evidence
 edges: {}
@@ -54,6 +56,8 @@ title: Evidence
 type: concept
 domain: test
 status: active
+created: 2026-06-07
+updated: 2026-06-07
 concepts:
   - evidence
 edges: {}
@@ -75,3 +79,5 @@ Proof.
 
     assert artifacts[0].path.as_posix() == "graph/generated/nodes.jsonl"
     assert '"id": "concept:evidence"' in artifacts[0].content
+    assert artifacts[-1].path.as_posix() == "graph/generated/timeline.jsonl"
+    assert '"event_type": "created"' in artifacts[-1].content

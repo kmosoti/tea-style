@@ -4,6 +4,8 @@ title: Mutation Should Be Atomic Visible and Hard to Misunderstand
 type: note
 domain: automation
 status: active
+created: 2026-06-07
+updated: 2026-06-07
 summary: >
   Mutation should be deliberate, visible, bounded, and backed by evidence.
 concepts:

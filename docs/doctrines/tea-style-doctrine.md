@@ -4,6 +4,8 @@ title: TEA Style Doctrine
 type: doctrine
 domain: repo-wide
 status: active
+created: 2026-06-07
+updated: 2026-06-07
 summary: >
   tea-style is a Markdown-native engineering doctrine graph with embedded Python lifecycle tooling.
 concepts:

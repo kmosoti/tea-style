@@ -4,6 +4,8 @@ title: Generated Artifact Standard
 type: standard
 domain: repo-wide
 status: active
+created: 2026-06-07
+updated: 2026-06-07
 summary: >
   Defines generated graph artifacts, stale checks, determinism, and review expectations.
 concepts:
@@ -34,12 +36,19 @@ Generated artifacts are derived from Markdown/frontmatter. They are committed wh
 - `graph/generated/edges.jsonl`
 - `graph/generated/chunks.jsonl`
 - `graph/generated/concepts.jsonl`
+- `graph/generated/timeline.jsonl`
 - `graph/generated/reports/health.md`
 - `graph/generated/reports/orphan-notes.md`
 - `graph/generated/reports/dense-links.md`
 - `graph/generated/reports/duplicate-concepts.md`
 - `graph/generated/reports/proposed-edges.md`
+- `graph/generated/reports/timeline.md`
 - `graph/generated/visualizations/overview.html`
+- `graph/generated/visualizations/README.md`
+- `graph/generated/visualizations/repo-system.svg`
+- `graph/generated/visualizations/research-support.svg`
+- `graph/generated/visualizations/timeline-overview.svg`
+- `graph/generated/visualizations/concept-timeline-*.svg`
 
 ## Rules / standards
 - Generated artifacts must be deterministic.
@@ -48,6 +57,8 @@ Generated artifacts are derived from Markdown/frontmatter. They are committed wh
 - Reports should be boring, useful, and reviewable.
 - JSONL exports should be stable-sorted by ID or edge tuple.
 - Visualization output should avoid avoidable randomness.
+- Root README diagrams must be generated artifacts, not hand-maintained images.
+- Timeline artifacts must be derived from `created` and `updated` frontmatter dates.
 
 ## Related pages
 - [graph-knowledge-base-standard.md](graph-knowledge-base-standard.md)

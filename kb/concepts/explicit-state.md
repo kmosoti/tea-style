@@ -4,6 +4,8 @@ title: Explicit State
 type: concept
 domain: repo-wide
 status: active
+created: 2026-06-07
+updated: 2026-06-07
 summary: >
   State modeled clearly enough for humans and tools to inspect and reason about it.
 concepts:

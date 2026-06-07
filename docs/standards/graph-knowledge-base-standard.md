@@ -4,6 +4,8 @@ title: Graph Knowledge Base Standard
 type: standard
 domain: repo-wide
 status: active
+created: 2026-06-07
+updated: 2026-06-07
 summary: >
   Defines graph source units, node types, edge types, IDs, frontmatter, and generated artifacts.
 concepts:
@@ -91,9 +93,18 @@ title: Example
 type: note
 domain: repo-wide
 status: active
+created: 2026-06-07
+updated: 2026-06-07
 concepts:
   - evidence
 ```
+
+## Timeline metadata
+Every authored graph node should carry:
+- `created`: the date the note, concept, decision, standard, map, example, or antipattern entered the graph.
+- `updated`: the latest meaningful doctrine or metadata update date.
+
+Use ISO `YYYY-MM-DD` dates. Generated timeline artifacts use these fields rather than Git history so timelines remain portable across forks, exports, and future search systems.
 
 ## Related pages
 - [graph/schema.md](../../graph/schema.md)

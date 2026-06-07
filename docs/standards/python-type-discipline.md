@@ -4,6 +4,8 @@ title: Python Type Discipline
 type: standard
 domain: coding
 status: active
+created: 2026-06-07
+updated: 2026-06-07
 summary: >
   Defines how tea_kb uses Pydantic, dataclasses, NewType, StrEnum, Protocol, and standard collections.
 concepts:

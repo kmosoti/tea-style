@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from datetime import date
 from pathlib import Path
 from typing import Any
 
@@ -28,6 +29,8 @@ class FrontmatterModel(BaseModel):
     type: NodeType
     domain: str = Field(min_length=1)
     status: str = "active"
+    created: date | None = None
+    updated: date | None = None
     summary: str | None = None
     concepts: list[str] = Field(default_factory=list)
     applies_when: list[str] = Field(default_factory=list)
@@ -55,6 +58,8 @@ class ParsedDocument:
             source_hash=source_hash,
             summary=self.metadata.summary,
             aliases=tuple(self.metadata.aliases),
+            created=self.metadata.created,
+            updated=self.metadata.updated,
         )
 
 

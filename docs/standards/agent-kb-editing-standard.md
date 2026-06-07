@@ -4,6 +4,8 @@ title: Agent KB Editing Standard
 type: standard
 domain: agent-architecture
 status: active
+created: 2026-06-07
+updated: 2026-06-07
 summary: >
   Defines how agents may add or change graph knowledge without silently redefining doctrine.
 concepts:
@@ -38,6 +40,7 @@ Agents may propose graph changes. They must not silently promote inferred doctri
 - Mark inferred edges as proposed unless the user explicitly reviewed them.
 - Do not silently redefine core doctrine.
 - Do not rename IDs casually.
+- Update the `updated` frontmatter date when durable meaning, graph metadata, or relationships change.
 - Run validation before finishing.
 - Update maps only when navigation materially improves.
 
@@ -71,6 +74,7 @@ origin:
 - IDs are stable and meaningful.
 - Concepts reuse existing vocabulary.
 - Edges are justified.
+- `created` and `updated` dates are present and accurate enough for timeline generation.
 - Generated artifacts are updated.
 - Validation passes.
 - Reports were reviewed.

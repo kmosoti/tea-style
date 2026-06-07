@@ -8,6 +8,7 @@ from pathlib import Path
 from tea_kb.domain.enums import NodeType
 from tea_kb.domain.ids import concept_id_for
 from tea_kb.domain.models import KnowledgeGraph
+from tea_kb.graph.timeline import events_for_concept, major_concepts, timeline_events
 from tea_kb.io.artifact_writer import Artifact
 from tea_kb.reports.diagnostics import ValidationReport
 
@@ -21,6 +22,7 @@ def report_artifacts(graph: KnowledgeGraph, report: ValidationReport) -> list[Ar
             Path("graph/generated/reports/duplicate-concepts.md"), render_duplicate_concepts(graph)
         ),
         Artifact(Path("graph/generated/reports/proposed-edges.md"), render_proposed_edges(graph)),
+        Artifact(Path("graph/generated/reports/timeline.md"), render_timeline_report(graph)),
     ]
 
 
@@ -143,6 +145,65 @@ def render_proposed_edges(graph: KnowledgeGraph) -> str:
             )
         )
     lines.append("")
+    return "\n".join(lines)
+
+
+def render_timeline_report(graph: KnowledgeGraph) -> str:
+    events = timeline_events(graph)
+    created = sum(1 for event in events if event.event_type == "created")
+    updated = sum(1 for event in events if event.event_type == "updated")
+    rows_by_date: defaultdict[str, list[str]] = defaultdict(list)
+    for event in events:
+        rows_by_date[event.date.isoformat()].append(str(event.node_id))
+
+    lines = [
+        "# Knowledge Timeline",
+        "",
+        "## Summary",
+        "",
+        f"- Timeline events: {len(events)}",
+        f"- Created events: {created}",
+        f"- Updated events: {updated}",
+        f"- Dated nodes: {sum(1 for node in graph.nodes.values() if node.created or node.updated)}",
+        "",
+        "## Overall Growth",
+        "",
+        "| Date | Events | Nodes |",
+        "|---|---:|---|",
+    ]
+    if rows_by_date:
+        for date_value, node_ids in sorted(rows_by_date.items()):
+            visible_nodes = ", ".join(f"`{node_id}`" for node_id in node_ids[:8])
+            suffix = " ..." if len(node_ids) > 8 else ""
+            lines.append(f"| {date_value} | {len(node_ids)} | {visible_nodes}{suffix} |")
+    else:
+        lines.append("| None | 0 | None |")
+
+    lines.extend(["", "## Major Concept Timelines", ""])
+    for concept, count in major_concepts(graph):
+        concept_events = events_for_concept(events, concept)
+        lines.extend(
+            [
+                f"### {concept}",
+                "",
+                f"{count} node(s) carry this concept.",
+                "",
+                "| Date | Event | Node | Type | Path |",
+                "|---|---|---|---|---|",
+            ]
+        )
+        for event in concept_events[:20]:
+            lines.append(
+                "| "
+                f"{event.date.isoformat()} | "
+                f"{event.event_type} | "
+                f"`{event.node_id}` | "
+                f"{event.node_type.value} | "
+                f"{event.path.as_posix()} |"
+            )
+        if not concept_events:
+            lines.append("| None | None | None | None | None |")
+        lines.append("")
     return "\n".join(lines)
 
 

@@ -4,6 +4,8 @@ title: Coding Map
 type: map
 domain: coding
 status: active
+created: 2026-06-07
+updated: 2026-06-07
 summary: >
   Navigation map for coding doctrine and graph notes.
 concepts:

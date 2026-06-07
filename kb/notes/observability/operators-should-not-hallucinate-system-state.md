@@ -4,6 +4,8 @@ title: Operators Should Not Hallucinate System State
 type: note
 domain: observability
 status: active
+created: 2026-06-07
+updated: 2026-06-07
 summary: >
   Operators and agents should inspect evidence instead of guessing current system state.
 concepts:
