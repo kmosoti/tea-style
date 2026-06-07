@@ -37,6 +37,7 @@ Generated artifacts are derived from Markdown/frontmatter. They are committed wh
 - `graph/generated/chunks.jsonl`
 - `graph/generated/concepts.jsonl`
 - `graph/generated/timeline.jsonl`
+- `graph/generated/index.html`
 - `graph/generated/reports/health.md`
 - `graph/generated/reports/orphan-notes.md`
 - `graph/generated/reports/dense-links.md`
@@ -65,6 +66,8 @@ Generated artifacts are derived from Markdown/frontmatter. They are committed wh
 - Timeline artifacts must be derived from `created` and `updated` frontmatter dates.
 - `tea-kb build --check` must fail when stale files remain under `graph/generated`.
 - Normal `tea-kb build` should prune unexpected files under `graph/generated` before writing current artifacts.
+- CI uploads `graph/generated` as a workflow artifact for PR review.
+- The Pages workflow publishes `graph/generated` from `main` as a static artifact browser when GitHub Pages is enabled.
 
 ## Related pages
 - [graph-knowledge-base-standard.md](graph-knowledge-base-standard.md)

@@ -12,14 +12,18 @@ from rich.console import Console
 from rich.table import Table
 
 from tea_kb.boundary.config import GENERATED_DIR
-from tea_kb.domain.ids import slugify
+from tea_kb.domain.ids import ConceptId, NodeId, slugify
 from tea_kb.graph.algorithms import shortest_path
+from tea_kb.graph.timeline import events_for_concept, timeline_events
+from tea_kb.graph.updated_dates import validate_updated_dates_since
 from tea_kb.io.artifact_writer import ArtifactWriter
+from tea_kb.io.frontmatter_dates import update_updated_date
 from tea_kb.lifecycle import all_artifacts, load_and_validate, report_only_artifacts
 from tea_kb.reports.diagnostics import Severity, ValidationReport
 from tea_kb.viz.mermaid import render_path_mermaid
 from tea_kb.viz.pyvis_export import overview_artifact
 from tea_kb.viz.svg import (
+    concept_timeline_svg_artifacts,
     repo_system_svg_artifacts,
     research_support_svg_artifacts,
     svg_visualization_artifacts,
@@ -74,9 +78,17 @@ def validate(
     root: Path = typer.Option(Path("."), "--root", help="Repository root."),
     strict: bool = typer.Option(False, "--strict", help="Treat warnings as failures."),
     output_format: str = typer.Option("text", "--format", help="text or json."),
+    check_updated_since: str | None = typer.Option(
+        None, "--check-updated-since", help="Git ref used to check changed source dates."
+    ),
 ) -> None:
     """Validate source files and graph consistency."""
-    _, report = load_and_validate(_root(root))
+    repo = _root(root)
+    result, report = load_and_validate(repo)
+    if check_updated_since:
+        report = report.extend(
+            list(validate_updated_dates_since(result.graph, repo, check_updated_since))
+        )
     if output_format == "json":
         payload = [
             {
@@ -192,11 +204,17 @@ def viz(
         writer.write(artifacts)
         console.print(f"Wrote {len(artifacts)} visualization artifact(s).")
         return
+    if view == "concept" and source:
+        artifacts = concept_timeline_svg_artifacts(result.graph, _concept_argument(source))
+        ArtifactWriter(repo).write(artifacts)
+        console.print(f"Wrote {len(artifacts)} concept timeline artifact(s).")
+        return
     if view == "path" and source and target:
         console.print(render_path_mermaid(result.graph, source, target))
         return
     console.print(
-        "Supported views: overview, timeline, system, research, all, path <source> <target>"
+        "Supported views: overview, timeline, system, research, all, concept <concept>, "
+        "path <source> <target>"
     )
     raise typer.Exit(2)
 
@@ -208,7 +226,7 @@ def inspect(
     """Show one node, metadata, edges, chunks, and source path."""
     result, validation = load_and_validate(_root(root))
     _exit_for_report(validation)
-    node = result.graph.nodes.get(node_id)  # type: ignore[arg-type]
+    node = result.graph.nodes.get(NodeId(node_id))
     if node is None:
         console.print(f"Unknown node: {node_id}")
         raise typer.Exit(1)
@@ -243,6 +261,51 @@ def neighbors(
     for edge in graph.outbound_edges(node_id):  # type: ignore[arg-type]
         table.add_row("out", edge.edge_type.value, str(edge.target))
     console.print(table)
+
+
+@app.command()
+def timeline(
+    concept: str | None = typer.Argument(None, help="Optional concept name or concept:<slug>."),
+    limit: int = typer.Option(50, "--limit", help="Maximum events to show."),
+    root: Path = typer.Option(Path("."), "--root", help="Repository root."),
+) -> None:
+    """Show knowledge timeline events."""
+    result, validation = load_and_validate(_root(root))
+    _exit_for_report(validation)
+    events = timeline_events(result.graph)
+    if concept:
+        events = events_for_concept(events, _concept_argument(concept))
+
+    table = Table("Date", "Event", "Node", "Type", "Path")
+    for event in events[:limit]:
+        table.add_row(
+            event.date.isoformat(),
+            event.event_type,
+            str(event.node_id),
+            event.node_type.value,
+            event.path.as_posix(),
+        )
+    console.print(table)
+
+
+@app.command()
+def touch(
+    node_id: str,
+    date_value: str | None = typer.Option(None, "--date", help="Date to write as YYYY-MM-DD."),
+    root: Path = typer.Option(Path("."), "--root", help="Repository root."),
+) -> None:
+    """Update one node's frontmatter updated date."""
+    repo = _root(root)
+    result, validation = load_and_validate(repo)
+    _exit_for_report(validation)
+    node = result.graph.nodes.get(node_id)  # type: ignore[arg-type]
+    if node is None:
+        console.print(f"Unknown node: {node_id}")
+        raise typer.Exit(1)
+    updated = date.fromisoformat(date_value) if date_value else date.today()
+    changed = update_updated_date(repo / node.path, updated)
+    action = "Updated" if changed else "Already current"
+    console.print(f"{action}: {node.path.as_posix()} updated={updated.isoformat()}")
 
 
 @app.command(name="path")
@@ -388,3 +451,7 @@ TODO
 """
     target.write_text(content, encoding="utf-8", newline="\n")
     console.print(f"Wrote {path.as_posix()}")
+
+
+def _concept_argument(value: str) -> ConceptId:
+    return ConceptId(slugify(value.removeprefix("concept:")))
