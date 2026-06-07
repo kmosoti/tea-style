@@ -4,8 +4,8 @@ title: Metrics
 type: concept
 domain: observability
 status: active
-created: 2026-06-07
-updated: 2026-06-07
+created: 2026-06-06
+updated: 2026-06-06
 summary: >
   Numeric measurements that should support diagnosis, decisions, or trend analysis.
 concepts:

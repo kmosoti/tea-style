@@ -4,8 +4,8 @@ title: Systems Should Tell on Themselves
 type: note
 domain: repo-wide
 status: active
-created: 2026-06-07
-updated: 2026-06-07
+created: 2026-06-06
+updated: 2026-06-06
 summary: >
   Good systems reduce guessing by exposing state, capturing evidence, and making failure modes visible.
 concepts:

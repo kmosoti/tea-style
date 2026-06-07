@@ -4,8 +4,8 @@ title: Agent KB Editing Standard
 type: standard
 domain: agent-architecture
 status: active
-created: 2026-06-07
-updated: 2026-06-07
+created: 2026-06-06
+updated: 2026-06-06
 summary: >
   Defines how agents may add or change graph knowledge without silently redefining doctrine.
 concepts:

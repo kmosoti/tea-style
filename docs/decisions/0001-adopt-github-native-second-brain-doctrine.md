@@ -4,8 +4,8 @@ title: Adopt GitHub-Native Second-Brain Doctrine
 type: decision
 domain: repo-wide
 status: active
-created: 2026-06-07
-updated: 2026-06-07
+created: 2026-06-04
+updated: 2026-06-06
 summary: >
   Use GitHub-native Markdown as the second-brain substrate for tea-style.
 concepts:

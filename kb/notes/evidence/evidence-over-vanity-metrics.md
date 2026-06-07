@@ -4,8 +4,8 @@ title: Evidence Over Vanity Metrics
 type: note
 domain: observability
 status: active
-created: 2026-06-07
-updated: 2026-06-07
+created: 2026-06-06
+updated: 2026-06-06
 summary: >
   Prefer evidence that changes decisions over metrics that only make activity visible.
 concepts:

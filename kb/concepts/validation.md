@@ -4,8 +4,8 @@ title: Validation
 type: concept
 domain: repo-wide
 status: active
-created: 2026-06-07
-updated: 2026-06-07
+created: 2026-06-06
+updated: 2026-06-06
 summary: >
   Explicit checks that reject invalid source, state, plans, edges, or generated artifacts.
 concepts:

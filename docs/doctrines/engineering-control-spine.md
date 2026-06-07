@@ -4,8 +4,8 @@ title: Engineering Control Spine
 type: doctrine
 domain: repo-wide
 status: active
-created: 2026-06-07
-updated: 2026-06-07
+created: 2026-06-04
+updated: 2026-06-06
 summary: >
   Good systems are easy to reason about, easy to change, hard to misuse, and observable when they fail.
 concepts:

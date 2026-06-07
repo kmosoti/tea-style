@@ -4,8 +4,8 @@ title: Engineering Doctrine Map
 type: map
 domain: repo-wide
 status: active
-created: 2026-06-07
-updated: 2026-06-07
+created: 2026-06-06
+updated: 2026-06-06
 summary: >
   Navigation map for the core TEA doctrine graph.
 concepts:

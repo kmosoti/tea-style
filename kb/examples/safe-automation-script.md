@@ -4,8 +4,8 @@ title: Safe Automation Script
 type: example
 domain: automation
 status: active
-created: 2026-06-07
-updated: 2026-06-07
+created: 2026-06-06
+updated: 2026-06-06
 summary: >
   A safe automation script separates planning, validation, execution, and evidence.
 concepts:

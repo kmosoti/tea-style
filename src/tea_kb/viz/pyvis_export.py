@@ -44,11 +44,37 @@ def render_overview_html(graph: KnowledgeGraph) -> str:
   <meta charset="utf-8">
   <title>TEA Graph Overview</title>
   <style>
-    body {{ font-family: system-ui, sans-serif; margin: 2rem; line-height: 1.4; }}
+    :root {{
+      color-scheme: light dark;
+      --bg: #ffffff;
+      --ink: #172033;
+      --muted: #57606a;
+      --line: #d0d7de;
+      --head: #f6f8fa;
+      --link: #0969da;
+    }}
+    @media (prefers-color-scheme: dark) {{
+      :root {{
+        --bg: #0b1220;
+        --ink: #e5edf7;
+        --muted: #9aa8bd;
+        --line: #334155;
+        --head: #111827;
+        --link: #60a5fa;
+      }}
+    }}
+    body {{
+      background: var(--bg);
+      color: var(--ink);
+      font-family: system-ui, sans-serif;
+      margin: 2rem;
+      line-height: 1.4;
+    }}
     table {{ border-collapse: collapse; width: 100%; margin: 1rem 0 2rem; }}
-    th, td {{ border: 1px solid #d0d7de; padding: 0.4rem 0.5rem; text-align: left; }}
-    th {{ background: #f6f8fa; }}
+    th, td {{ border: 1px solid var(--line); padding: 0.4rem 0.5rem; text-align: left; }}
+    th {{ background: var(--head); }}
     code {{ white-space: nowrap; }}
+    a {{ color: var(--link); }}
   </style>
 </head>
 <body>
