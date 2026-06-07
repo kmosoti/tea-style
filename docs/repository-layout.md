@@ -1,8 +1,8 @@
 # Repository Layout
 
-`tea-style` is a doctrine and preferences repository.
+`tea-style` is a doctrine graph and preferences repository.
 
-It exists to document how I prefer to design, structure, and review work across multiple technical domains.
+It exists to document how I prefer to design, structure, and review work across multiple technical domains, and to make that knowledge base inspectable through bounded lifecycle tooling.
 
 ## Domain layout
 
@@ -31,11 +31,39 @@ It exists to document how I prefer to design, structure, and review work across 
   - Rules for useful examples and diagrams.
 - `docs/decisions/`
   - Decision log for durable architecture/doctrine decisions.
+- `docs/maps/`
+  - Human navigation maps for the doctrine graph.
+- `docs/standards/`
+  - Repository-wide graph, generated artifact, visualization, agent editing, and Python type standards.
 
 ## Cross cutting doctrine
 
 - `docs/doctrines/`
   - Cross domain doctrine such as TEA Style and the engineering control spine.
+
+## Knowledge base graph
+
+- `kb/notes/`
+  - Primary authored graph notes.
+- `kb/concepts/`
+  - Controlled vocabulary entries.
+- `kb/antipatterns/`
+  - Named failure modes.
+- `kb/examples/`
+  - Compact examples connected to doctrine.
+- `graph/schema.md`
+  - Graph schema reference.
+- `graph/generated/`
+  - Derived nodes, edges, chunks, reports, and visualizations.
+
+## Lifecycle tooling
+
+- `src/tea_kb/`
+  - Python package for validation, graph construction, reporting, visualization, and export.
+- `tests/`
+  - Unit and integration tests for the lifecycle tool.
+- `pyproject.toml`
+  - Project metadata, dependencies, scripts, and tool configuration.
 
 ## Standard for domain content
 
@@ -47,4 +75,4 @@ Each domain should eventually capture:
 4. Tooling preferences
 5. Examples
 
-The goal is not encyclopedic documentation. The goal is a clear record of how I prefer to build and reason in each domain.
+The goal is not encyclopedic documentation or product code. The goal is a clear record of how I prefer to build and reason, plus enough tooling to keep that record durable.

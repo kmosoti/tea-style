@@ -21,6 +21,8 @@ Keep titles explicit and stable.
 
 ## Decision index
 - [0001-adopt-github-native-second-brain-doctrine.md](0001-adopt-github-native-second-brain-doctrine.md)
+- [0002-adopt-markdown-native-doctrine-graph.md](0002-adopt-markdown-native-doctrine-graph.md)
+- [0003-ship-tea-kb-lifecycle-tooling.md](0003-ship-tea-kb-lifecycle-tooling.md)
 
 ## Decision record template
 Use this structure:

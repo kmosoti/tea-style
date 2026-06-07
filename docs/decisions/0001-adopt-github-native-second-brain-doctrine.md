@@ -1,3 +1,26 @@
+---
+id: decision:repo:0001-adopt-github-native-second-brain-doctrine
+title: Adopt GitHub-Native Second-Brain Doctrine
+type: decision
+domain: repo-wide
+status: active
+summary: >
+  Use GitHub-native Markdown as the second-brain substrate for tea-style.
+concepts:
+  - second brain
+  - markdown
+  - maps of content
+  - related links
+edges:
+  supports:
+    - standard:repo:graph-knowledge-base-standard
+  related_to:
+    - doctrine:repo:tea-style-doctrine
+origin:
+  author: human
+  review: manual
+---
+
 # 0001-adopt-github-native-second-brain-doctrine
 
 ## Status

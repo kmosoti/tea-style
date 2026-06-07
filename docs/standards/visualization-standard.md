@@ -1,0 +1,54 @@
+---
+id: standard:repo:visualization-standard
+title: Visualization Standard
+type: standard
+domain: repo-wide
+status: active
+summary: >
+  Defines graph visualizations as diagnostic artifacts, not decorative output.
+concepts:
+  - visualization
+  - diagnostics
+  - graph
+  - source links
+edges:
+  supports:
+    - standard:repo:generated-artifact-standard
+origin:
+  author: human
+  review: manual
+---
+
+# Visualization Standard
+
+## Purpose
+Define how graph visualizations should be generated and reviewed.
+
+## Core claim
+Visualizations are diagnostic. They should answer a question.
+
+## Rules / standards
+- Do not default to a full graph hairball.
+- Prefer filtered views such as concept neighborhoods, domain clusters, paths, contradictions, or orphans.
+- Limit default depth to one or two hops.
+- Show node type, domain, and edge labels.
+- Link visual nodes back to source Markdown when practical.
+- Generated visualizations must be deterministic enough for review.
+
+## Good visualizations
+- concept neighborhood
+- domain cluster
+- doctrine path
+- contradiction map
+- orphan note map
+- dense-link warning map
+- proposed-edge review map
+
+## Anti-patterns
+- huge all-node/all-edge views with no diagnostic purpose
+- decorative diagrams that do not affect review
+- visuals with no source path or provenance
+
+## Related pages
+- [generated-artifact-standard.md](generated-artifact-standard.md)
+- [graph-knowledge-base-standard.md](graph-knowledge-base-standard.md)

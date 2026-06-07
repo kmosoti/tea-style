@@ -2,7 +2,7 @@
 
 ## Repository identity
 
-`tea-style` is a compact doctrine and reference repository for engineering architecture.
+`tea-style` is a compact Markdown-native doctrine graph and reference repository for engineering architecture.
 It is written for both human engineers and LLM-based assistants.
 
 TEA stands for Typed Encapsulated Architecture Style.
@@ -11,15 +11,19 @@ This repository is:
 - a doctrine repo
 - a reference repo
 - a standards/patterns repo
+- a graph-shaped Markdown knowledge base
+- a bounded Python lifecycle tooling repo
 - a place for compact examples and architecture diagrams when they increase clarity
 
 This repository is not:
 - a product repo
 - a framework repo
+- a hosted app, SaaS, production API, or RAG runtime
+- a graph database, Neo4j, RDF, or ontology research project
 - a general tutorial dump
 - a blog
 - a random notes archive
-- a place to add implementation code unless the issue explicitly calls for it
+- a place to add implementation code except bounded lifecycle tooling that validates, builds, reports, visualizes, or exports the Markdown knowledge base
 
 ## Primary objective
 
@@ -40,11 +44,18 @@ Prefer clear structure and crisp distinctions over broad coverage.
 Use these defaults:
 - `README.md`: repository overview and identity
 - `docs/`: repository-wide scope, standards, working model, and decision records
+- `kb/`: Markdown/frontmatter source nodes for the doctrine graph
+- `graph/`: graph schema and generated artifacts
+- `src/tea_kb/`: bounded Python lifecycle tooling
+- `tests/`: lifecycle tooling tests
 - `domains/`: peer doctrine domains such as coding, agent architecture, automation, and observability
 
 Use these rules:
 - put repository-wide governance and standards in `docs/`
 - put domain-specific doctrine in `domains/<domain>/`
+- put graph-native authored notes, concepts, antipatterns, and examples in `kb/`
+- put generated graph artifacts in `graph/generated/`
+- keep Python lifecycle code under `src/tea_kb/`
 - add new folders only when there is a clear structural need
 - do not create parallel structures that duplicate existing concepts
 
@@ -60,11 +71,14 @@ Valid artifacts include:
 - compact examples
 - architecture diagrams
 - project/lab definitions for learning or experimentation
+- Python code for repository lifecycle tooling
+- generated graph artifacts when they are deterministic and useful for review
 
 Avoid adding:
 - large runnable systems
 - production app scaffolding
 - generic sample projects
+- hosted services, long-running processes, model-calling runtimes, or production APIs
 - vendor-news summaries
 - long unstructured research dumps
 - decorative diagrams
@@ -126,6 +140,7 @@ Use for:
 - template generators
 - evidence collectors
 - consistency checks
+- `tea_kb` lifecycle tooling changes
 
 Characteristics:
 - must remain subordinate to repo scope

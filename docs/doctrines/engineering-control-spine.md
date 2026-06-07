@@ -1,3 +1,30 @@
+---
+id: doctrine:repo:engineering-control-spine
+title: Engineering Control Spine
+type: doctrine
+domain: repo-wide
+status: active
+summary: >
+  Good systems are easy to reason about, easy to change, hard to misuse, and observable when they fail.
+concepts:
+  - change control
+  - boundaries
+  - state
+  - contracts
+  - feedback loops
+  - operability
+edges:
+  refines:
+    - doctrine:repo:typed-encapsulated-architecture-style
+  supports:
+    - doctrine:repo:systems-should-tell-on-themselves
+  applies_to:
+    - map:repo:engineering-doctrine
+origin:
+  author: human
+  review: manual
+---
+
 # Engineering Control Spine
 
 ## Purpose
