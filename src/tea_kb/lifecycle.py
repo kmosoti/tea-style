@@ -10,6 +10,7 @@ from tea_kb.graph.validators import validate_build_result
 from tea_kb.io.artifact_writer import Artifact
 from tea_kb.reports.diagnostics import ValidationReport
 from tea_kb.reports.markdown_report import report_artifacts
+from tea_kb.reports.site_index import site_index_artifact
 from tea_kb.viz.pyvis_export import overview_artifact
 from tea_kb.viz.svg import svg_visualization_artifacts
 
@@ -25,6 +26,7 @@ def all_artifacts(result: BuildResult, report: ValidationReport) -> list[Artifac
     return [
         *graph_jsonl_artifacts(graph),
         *report_artifacts(graph, report),
+        site_index_artifact(graph),
         overview_artifact(graph),
         *svg_visualization_artifacts(graph),
     ]

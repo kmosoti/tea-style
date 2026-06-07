@@ -108,6 +108,8 @@ Use ISO `YYYY-MM-DD` dates. Generated timeline artifacts use these fields rather
 
 When backfilling existing notes, prefer Git first-seen date for `created` and latest meaningful source change date for `updated`. When editing a note later, keep `created` stable and move `updated` to the edit date.
 
+Use `tea-kb touch <node-id>` to update a node's `updated` date without editing other frontmatter. Pull requests should run the updated-date validation gate so changed graph source files cannot silently keep stale timeline metadata.
+
 ## Related pages
 - [graph/schema.md](../../graph/schema.md)
 - [graph-linking-standard.md](graph-linking-standard.md)

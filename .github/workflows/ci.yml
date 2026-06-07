@@ -11,6 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: astral-sh/setup-uv@v5
       - name: Install dependencies
         run: uv sync --all-groups
@@ -24,5 +26,15 @@ jobs:
         run: uv run pytest
       - name: TEA KB validate
         run: uv run tea-kb validate
+      - name: TEA KB updated date check
+        if: github.event_name == 'pull_request'
+        run: |
+          git fetch origin "${{ github.base_ref }}:refs/remotes/origin/${{ github.base_ref }}"
+          uv run tea-kb validate --check-updated-since "origin/${{ github.base_ref }}" --strict
       - name: TEA KB build check
         run: uv run tea-kb build --check
+      - name: Upload generated graph artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: tea-generated-graph
+          path: graph/generated
