@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import shutil
+from datetime import date
 from pathlib import Path
 
 import typer
@@ -17,6 +18,13 @@ from tea_kb.io.artifact_writer import ArtifactWriter
 from tea_kb.lifecycle import all_artifacts, load_and_validate, report_only_artifacts
 from tea_kb.reports.diagnostics import Severity, ValidationReport
 from tea_kb.viz.mermaid import render_path_mermaid
+from tea_kb.viz.pyvis_export import overview_artifact
+from tea_kb.viz.svg import (
+    repo_system_svg_artifact,
+    research_support_svg_artifact,
+    svg_visualization_artifacts,
+    timeline_overview_svg_artifact,
+)
 
 app = typer.Typer(no_args_is_help=True)
 new_app = typer.Typer(no_args_is_help=True)
@@ -158,13 +166,32 @@ def viz(
     result, validation = load_and_validate(repo)
     _exit_for_report(validation)
     if view == "overview":
-        ArtifactWriter(repo).write([all_artifacts(result, validation)[-1]])
+        ArtifactWriter(repo).write([overview_artifact(result.graph)])
         console.print("Wrote graph/generated/visualizations/overview.html")
+        return
+    if view == "timeline":
+        ArtifactWriter(repo).write([timeline_overview_svg_artifact(result.graph)])
+        console.print("Wrote graph/generated/visualizations/timeline-overview.svg")
+        return
+    if view == "system":
+        ArtifactWriter(repo).write([repo_system_svg_artifact(result.graph)])
+        console.print("Wrote graph/generated/visualizations/repo-system.svg")
+        return
+    if view == "research":
+        ArtifactWriter(repo).write([research_support_svg_artifact(result.graph)])
+        console.print("Wrote graph/generated/visualizations/research-support.svg")
+        return
+    if view == "all":
+        artifacts = [overview_artifact(result.graph), *svg_visualization_artifacts(result.graph)]
+        ArtifactWriter(repo).write(artifacts)
+        console.print(f"Wrote {len(artifacts)} visualization artifact(s).")
         return
     if view == "path" and source and target:
         console.print(render_path_mermaid(result.graph, source, target))
         return
-    console.print("Supported views: overview, path <source> <target>")
+    console.print(
+        "Supported views: overview, timeline, system, research, all, path <source> <target>"
+    )
     raise typer.Exit(2)
 
 
@@ -321,12 +348,15 @@ def _write_template(
         console.print(f"Refusing to overwrite existing file: {path.as_posix()}")
         raise typer.Exit(1)
     target.parent.mkdir(parents=True, exist_ok=True)
+    today = date.today().isoformat()
     content = f"""---
 id: {node_id}
 title: {title}
 type: {node_type}
 domain: {domain}
 status: active
+created: {today}
+updated: {today}
 summary: >
   TODO
 concepts: []

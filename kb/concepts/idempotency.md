@@ -4,6 +4,8 @@ title: Idempotency
 type: concept
 domain: automation
 status: active
+created: 2026-06-07
+updated: 2026-06-07
 summary: >
   Repeating an operation does not cause unintended additional effects.
 concepts:

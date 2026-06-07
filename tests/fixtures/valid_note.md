@@ -4,6 +4,8 @@ title: Valid Note
 type: note
 domain: test
 status: active
+created: 2026-06-07
+updated: 2026-06-07
 summary: >
   A valid test note.
 concepts:

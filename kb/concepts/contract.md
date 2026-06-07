@@ -4,6 +4,8 @@ title: Contract
 type: concept
 domain: coding
 status: active
+created: 2026-06-07
+updated: 2026-06-07
 summary: >
   A promise about inputs, outputs, side effects, errors, compatibility, or behavior.
 concepts:

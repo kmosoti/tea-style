@@ -4,6 +4,8 @@ title: Automation Map
 type: map
 domain: automation
 status: active
+created: 2026-06-07
+updated: 2026-06-07
 summary: >
   Navigation map for automation doctrine and graph notes.
 concepts:

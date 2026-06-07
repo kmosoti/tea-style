@@ -99,6 +99,8 @@ def build_graph(root: Path) -> BuildResult:
                 node_type=node.node_type,
                 outbound_edges=tuple(edge_targets_by_source.get(node.id, [])),
                 source_hash=node.source_hash,
+                created=node.created,
+                updated=node.updated,
             )
         )
 

@@ -1,3 +1,4 @@
+from datetime import date
 from pathlib import Path
 
 import pytest
@@ -12,6 +13,8 @@ def test_parse_valid_frontmatter() -> None:
 
     assert parsed.metadata.id == "note:test:valid-note"
     assert parsed.metadata.type == "note"
+    assert parsed.metadata.created == date(2026, 6, 7)
+    assert parsed.metadata.updated == date(2026, 6, 7)
     assert parsed.metadata.edges
 
 

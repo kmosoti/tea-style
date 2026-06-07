@@ -4,6 +4,8 @@ title: Provenance
 type: concept
 domain: repo-wide
 status: active
+created: 2026-06-07
+updated: 2026-06-07
 summary: >
   Information about where a claim, node, edge, artifact, or decision came from.
 concepts:

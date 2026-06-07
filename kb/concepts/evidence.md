@@ -4,6 +4,8 @@ title: Evidence
 type: concept
 domain: repo-wide
 status: active
+created: 2026-06-07
+updated: 2026-06-07
 summary: >
   Structured proof that supports an operational, architectural, or review claim.
 concepts:

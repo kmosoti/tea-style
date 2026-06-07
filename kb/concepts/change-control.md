@@ -4,6 +4,8 @@ title: Change Control
 type: concept
 domain: automation
 status: active
+created: 2026-06-07
+updated: 2026-06-07
 summary: >
   Explicit handling of what can change, who approves it, how it is validated, and how it is recovered.
 concepts:

@@ -4,6 +4,8 @@ title: Agent Tool Boundary
 type: example
 domain: agent-architecture
 status: active
+created: 2026-06-07
+updated: 2026-06-07
 summary: >
   Agent tools should expose deterministic read, validation, dry-run, and mutation boundaries.
 concepts:

@@ -11,6 +11,7 @@ from tea_kb.io.artifact_writer import Artifact
 from tea_kb.reports.diagnostics import ValidationReport
 from tea_kb.reports.markdown_report import report_artifacts
 from tea_kb.viz.pyvis_export import overview_artifact
+from tea_kb.viz.svg import svg_visualization_artifacts
 
 
 def load_and_validate(root: Path) -> tuple[BuildResult, ValidationReport]:
@@ -25,6 +26,7 @@ def all_artifacts(result: BuildResult, report: ValidationReport) -> list[Artifac
         *graph_jsonl_artifacts(graph),
         *report_artifacts(graph, report),
         overview_artifact(graph),
+        *svg_visualization_artifacts(graph),
     ]
 
 
