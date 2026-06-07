@@ -4,8 +4,8 @@ title: Ship TEA KB Lifecycle Tooling
 type: decision
 domain: repo-wide
 status: active
-created: 2026-06-07
-updated: 2026-06-07
+created: 2026-06-06
+updated: 2026-06-06
 summary: >
   Include a bounded Python package and CLI for validating, building, reporting, visualizing, and exporting the Markdown doctrine graph.
 concepts:

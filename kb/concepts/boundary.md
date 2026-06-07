@@ -4,8 +4,8 @@ title: Boundary
 type: concept
 domain: coding
 status: active
-created: 2026-06-07
-updated: 2026-06-07
+created: 2026-06-06
+updated: 2026-06-06
 summary: >
   A public interface where messy internals, external systems, or side effects are contained.
 concepts:

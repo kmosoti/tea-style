@@ -20,10 +20,10 @@ from tea_kb.reports.diagnostics import Severity, ValidationReport
 from tea_kb.viz.mermaid import render_path_mermaid
 from tea_kb.viz.pyvis_export import overview_artifact
 from tea_kb.viz.svg import (
-    repo_system_svg_artifact,
-    research_support_svg_artifact,
+    repo_system_svg_artifacts,
+    research_support_svg_artifacts,
     svg_visualization_artifacts,
-    timeline_overview_svg_artifact,
+    timeline_overview_svg_artifacts,
 )
 
 app = typer.Typer(no_args_is_help=True)
@@ -112,11 +112,15 @@ def build(
     artifacts = all_artifacts(result, report)
     writer = ArtifactWriter(repo)
     if check:
-        writer.check(artifacts)
+        writer.check(artifacts, managed_root=GENERATED_DIR)
         console.print("Generated artifacts are current.")
         return
     if clean and (repo / GENERATED_DIR).exists():
         shutil.rmtree(repo / GENERATED_DIR)
+    elif not clean:
+        pruned = writer.prune_unexpected(artifacts, GENERATED_DIR)
+        if pruned:
+            console.print(f"Pruned {len(pruned)} stale generated artifact(s).")
     writer.write(artifacts)
     console.print(f"Wrote {len(artifacts)} generated artifact(s).")
 
@@ -170,20 +174,22 @@ def viz(
         console.print("Wrote graph/generated/visualizations/overview.html")
         return
     if view == "timeline":
-        ArtifactWriter(repo).write([timeline_overview_svg_artifact(result.graph)])
-        console.print("Wrote graph/generated/visualizations/timeline-overview.svg")
+        ArtifactWriter(repo).write(timeline_overview_svg_artifacts(result.graph))
+        console.print("Wrote timeline overview light/dark SVGs.")
         return
     if view == "system":
-        ArtifactWriter(repo).write([repo_system_svg_artifact(result.graph)])
-        console.print("Wrote graph/generated/visualizations/repo-system.svg")
+        ArtifactWriter(repo).write(repo_system_svg_artifacts(result.graph))
+        console.print("Wrote repository system light/dark SVGs.")
         return
     if view == "research":
-        ArtifactWriter(repo).write([research_support_svg_artifact(result.graph)])
-        console.print("Wrote graph/generated/visualizations/research-support.svg")
+        ArtifactWriter(repo).write(research_support_svg_artifacts(result.graph))
+        console.print("Wrote research support light/dark SVGs.")
         return
     if view == "all":
         artifacts = [overview_artifact(result.graph), *svg_visualization_artifacts(result.graph)]
-        ArtifactWriter(repo).write(artifacts)
+        writer = ArtifactWriter(repo)
+        writer.prune_unexpected(artifacts, GENERATED_DIR / "visualizations")
+        writer.write(artifacts)
         console.print(f"Wrote {len(artifacts)} visualization artifact(s).")
         return
     if view == "path" and source and target:

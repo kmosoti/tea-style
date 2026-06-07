@@ -3,6 +3,7 @@ from pathlib import Path
 from tea_kb.graph.builder import build_graph
 from tea_kb.graph.exporters import graph_jsonl_artifacts
 from tea_kb.graph.validators import validate_build_result
+from tea_kb.viz.svg import svg_visualization_artifacts
 
 
 def test_build_and_validate_fixture_graph(tmp_path: Path) -> None:
@@ -81,3 +82,41 @@ Proof.
     assert '"id": "concept:evidence"' in artifacts[0].content
     assert artifacts[-1].path.as_posix() == "graph/generated/timeline.jsonl"
     assert '"event_type": "created"' in artifacts[-1].content
+
+
+def test_visualization_exports_include_light_and_dark_variants(tmp_path: Path) -> None:
+    concept = tmp_path / "kb/concepts/evidence.md"
+    concept.parent.mkdir(parents=True)
+    concept.write_text(
+        """---
+id: concept:evidence
+title: Evidence
+type: concept
+domain: test
+status: active
+created: 2026-06-07
+updated: 2026-06-07
+concepts:
+  - evidence
+edges: {}
+origin:
+  author: human
+  review: manual
+---
+
+# Evidence
+
+## Definition
+Proof.
+""",
+        encoding="utf-8",
+    )
+
+    result = build_graph(tmp_path)
+    paths = {artifact.path.as_posix() for artifact in svg_visualization_artifacts(result.graph)}
+
+    assert "graph/generated/visualizations/repo-system-light.svg" in paths
+    assert "graph/generated/visualizations/repo-system-dark.svg" in paths
+    assert "graph/generated/visualizations/concept-timeline-evidence-light.svg" in paths
+    assert "graph/generated/visualizations/concept-timeline-evidence-dark.svg" in paths
+    assert "graph/generated/visualizations/repo-system.svg" not in paths

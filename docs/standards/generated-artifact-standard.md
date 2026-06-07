@@ -4,7 +4,7 @@ title: Generated Artifact Standard
 type: standard
 domain: repo-wide
 status: active
-created: 2026-06-07
+created: 2026-06-06
 updated: 2026-06-07
 summary: >
   Defines generated graph artifacts, stale checks, determinism, and review expectations.
@@ -45,10 +45,14 @@ Generated artifacts are derived from Markdown/frontmatter. They are committed wh
 - `graph/generated/reports/timeline.md`
 - `graph/generated/visualizations/overview.html`
 - `graph/generated/visualizations/README.md`
-- `graph/generated/visualizations/repo-system.svg`
-- `graph/generated/visualizations/research-support.svg`
-- `graph/generated/visualizations/timeline-overview.svg`
-- `graph/generated/visualizations/concept-timeline-*.svg`
+- `graph/generated/visualizations/repo-system-light.svg`
+- `graph/generated/visualizations/repo-system-dark.svg`
+- `graph/generated/visualizations/research-support-light.svg`
+- `graph/generated/visualizations/research-support-dark.svg`
+- `graph/generated/visualizations/timeline-overview-light.svg`
+- `graph/generated/visualizations/timeline-overview-dark.svg`
+- `graph/generated/visualizations/concept-timeline-*-light.svg`
+- `graph/generated/visualizations/concept-timeline-*-dark.svg`
 
 ## Rules / standards
 - Generated artifacts must be deterministic.
@@ -59,6 +63,8 @@ Generated artifacts are derived from Markdown/frontmatter. They are committed wh
 - Visualization output should avoid avoidable randomness.
 - Root README diagrams must be generated artifacts, not hand-maintained images.
 - Timeline artifacts must be derived from `created` and `updated` frontmatter dates.
+- `tea-kb build --check` must fail when stale files remain under `graph/generated`.
+- Normal `tea-kb build` should prune unexpected files under `graph/generated` before writing current artifacts.
 
 ## Related pages
 - [graph-knowledge-base-standard.md](graph-knowledge-base-standard.md)

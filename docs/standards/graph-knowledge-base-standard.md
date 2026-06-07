@@ -4,7 +4,7 @@ title: Graph Knowledge Base Standard
 type: standard
 domain: repo-wide
 status: active
-created: 2026-06-07
+created: 2026-06-06
 updated: 2026-06-07
 summary: >
   Defines graph source units, node types, edge types, IDs, frontmatter, and generated artifacts.
@@ -105,6 +105,8 @@ Every authored graph node should carry:
 - `updated`: the latest meaningful doctrine or metadata update date.
 
 Use ISO `YYYY-MM-DD` dates. Generated timeline artifacts use these fields rather than Git history so timelines remain portable across forks, exports, and future search systems.
+
+When backfilling existing notes, prefer Git first-seen date for `created` and latest meaningful source change date for `updated`. When editing a note later, keep `created` stable and move `updated` to the edit date.
 
 ## Related pages
 - [graph/schema.md](../../graph/schema.md)

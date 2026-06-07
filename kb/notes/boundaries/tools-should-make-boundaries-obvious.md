@@ -4,8 +4,8 @@ title: Tools Should Make Boundaries Obvious
 type: note
 domain: coding
 status: active
-created: 2026-06-07
-updated: 2026-06-07
+created: 2026-06-06
+updated: 2026-06-06
 summary: >
   Tools should make read, write, validation, and execution boundaries visible.
 concepts:

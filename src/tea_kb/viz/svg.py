@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from collections import Counter, defaultdict
+from collections.abc import Callable
 from html import escape
 from pathlib import Path
 
@@ -18,11 +19,14 @@ from tea_kb.graph.timeline import (
 from tea_kb.io.artifact_writer import Artifact
 
 SVG_DIR = Path("graph/generated/visualizations")
-PALETTE = {
+LIGHT_PALETTE = {
     "bg": "#f8fafc",
+    "card": "#ffffff",
     "ink": "#172033",
+    "inverse_ink": "#ffffff",
     "muted": "#64748b",
     "line": "#cbd5e1",
+    "shadow": "#0f172a",
     "blue": "#2563eb",
     "teal": "#0f766e",
     "amber": "#b45309",
@@ -30,24 +34,47 @@ PALETTE = {
     "violet": "#6d28d9",
     "green": "#15803d",
 }
+DARK_PALETTE = {
+    "bg": "#0b1220",
+    "card": "#111827",
+    "ink": "#e5edf7",
+    "inverse_ink": "#ffffff",
+    "muted": "#9aa8bd",
+    "line": "#334155",
+    "shadow": "#000000",
+    "blue": "#60a5fa",
+    "teal": "#2dd4bf",
+    "amber": "#f59e0b",
+    "rose": "#fb7185",
+    "violet": "#a78bfa",
+    "green": "#22c55e",
+}
+PALETTES = {"light": LIGHT_PALETTE, "dark": DARK_PALETTE}
+PALETTE = LIGHT_PALETTE
 
 
 def svg_visualization_artifacts(graph: KnowledgeGraph) -> list[Artifact]:
     artifacts = [
         visualization_index_artifact(graph),
-        repo_system_svg_artifact(graph),
-        research_support_svg_artifact(graph),
-        timeline_overview_svg_artifact(graph),
+        *repo_system_svg_artifacts(graph),
+        *research_support_svg_artifacts(graph),
+        *timeline_overview_svg_artifacts(graph),
     ]
     artifacts.extend(
-        concept_timeline_svg_artifact(graph, concept) for concept, _ in major_concepts(graph)
+        artifact
+        for concept, _ in major_concepts(graph)
+        for artifact in concept_timeline_svg_artifacts(graph, concept)
     )
     return artifacts
 
 
 def visualization_index_artifact(graph: KnowledgeGraph) -> Artifact:
     concept_lines = [
-        f"- [{concept}](concept-timeline-{_concept_slug(concept)}.svg) - {count} node(s)"
+        (
+            f"- `{concept}` - {count} node(s): "
+            f"[light](concept-timeline-{_concept_slug(concept)}-light.svg), "
+            f"[dark](concept-timeline-{_concept_slug(concept)}-dark.svg)"
+        )
         for concept, count in major_concepts(graph)
     ]
     lines = [
@@ -57,9 +84,15 @@ def visualization_index_artifact(graph: KnowledgeGraph) -> Artifact:
         "",
         "## README visuals",
         "",
-        "- [Repository system](repo-system.svg)",
-        "- [Research support map](research-support.svg)",
-        "- [Knowledge base growth](timeline-overview.svg)",
+        "- Repository system: [light](repo-system-light.svg), [dark](repo-system-dark.svg)",
+        (
+            "- Research support map: "
+            "[light](research-support-light.svg), [dark](research-support-dark.svg)"
+        ),
+        (
+            "- Knowledge base growth: "
+            "[light](timeline-overview-light.svg), [dark](timeline-overview-dark.svg)"
+        ),
         "",
         "## Diagnostic views",
         "",
@@ -73,21 +106,21 @@ def visualization_index_artifact(graph: KnowledgeGraph) -> Artifact:
     return Artifact(SVG_DIR / "README.md", "\n".join(lines))
 
 
-def repo_system_svg_artifact(graph: KnowledgeGraph) -> Artifact:
-    return Artifact(SVG_DIR / "repo-system.svg", render_repo_system_svg(graph))
+def repo_system_svg_artifacts(graph: KnowledgeGraph) -> list[Artifact]:
+    return _themed_artifacts("repo-system", lambda: render_repo_system_svg(graph))
 
 
-def research_support_svg_artifact(graph: KnowledgeGraph) -> Artifact:
-    return Artifact(SVG_DIR / "research-support.svg", render_research_support_svg(graph))
+def research_support_svg_artifacts(graph: KnowledgeGraph) -> list[Artifact]:
+    return _themed_artifacts("research-support", lambda: render_research_support_svg(graph))
 
 
-def timeline_overview_svg_artifact(graph: KnowledgeGraph) -> Artifact:
-    return Artifact(SVG_DIR / "timeline-overview.svg", render_timeline_overview_svg(graph))
+def timeline_overview_svg_artifacts(graph: KnowledgeGraph) -> list[Artifact]:
+    return _themed_artifacts("timeline-overview", lambda: render_timeline_overview_svg(graph))
 
 
-def concept_timeline_svg_artifact(graph: KnowledgeGraph, concept: ConceptId) -> Artifact:
-    filename = f"concept-timeline-{_concept_slug(concept)}.svg"
-    return Artifact(SVG_DIR / filename, render_concept_timeline_svg(graph, concept))
+def concept_timeline_svg_artifacts(graph: KnowledgeGraph, concept: ConceptId) -> list[Artifact]:
+    stem = f"concept-timeline-{_concept_slug(concept)}"
+    return _themed_artifacts(stem, lambda: render_concept_timeline_svg(graph, concept))
 
 
 def render_repo_system_svg(graph: KnowledgeGraph) -> str:
@@ -242,7 +275,7 @@ def render_timeline_overview_svg(graph: KnowledgeGraph) -> str:
         lines.extend(
             [
                 f"<circle cx='{x}' cy='248' r='{radius}' fill='{PALETTE['blue']}' opacity='0.92'/>",
-                _text(x, 252, str(total), 18, "800", "middle", "#ffffff"),
+                _text(x, 252, str(total), 18, "800", "middle", PALETTE["inverse_ink"]),
                 _text(x, 188, date_value, 16, "700", "middle"),
                 _text(x, 310, f"{created} created / {updated} updated", 14, "600", "middle"),
             ]
@@ -307,6 +340,24 @@ def render_concept_timeline_svg(graph: KnowledgeGraph, concept: ConceptId) -> st
     return "\n".join(lines)
 
 
+def _themed_artifacts(stem: str, renderer: Callable[[], str]) -> list[Artifact]:
+    return [
+        Artifact(SVG_DIR / f"{stem}-{theme}.svg", _render_with_palette(palette, renderer))
+        for theme, palette in PALETTES.items()
+    ]
+
+
+def _render_with_palette(palette: dict[str, str], renderer: Callable[[], str]) -> str:
+    global PALETTE
+
+    previous = PALETTE
+    try:
+        PALETTE = palette
+        return renderer()
+    finally:
+        PALETTE = previous
+
+
 def _svg_open(width: int, height: int, label: str) -> str:
     return "\n".join(
         [
@@ -324,7 +375,7 @@ def _svg_open(width: int, height: int, label: str) -> str:
             '  <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">',
             (
                 '    <feDropShadow dx="0" dy="4" stdDeviation="5" '
-                'flood-color="#0f172a" flood-opacity="0.12"/>'
+                f'flood-color="{PALETTE["shadow"]}" flood-opacity="0.12"/>'
             ),
             "  </filter>",
             "</defs>",
@@ -346,7 +397,8 @@ def _card(x: int, y: int, width: int, height: int, title: str, lines: list[str],
     body = [
         (
             f"<rect x='{x}' y='{y}' width='{width}' height='{height}' rx='10' "
-            f"fill='#ffffff' stroke='{color}' stroke-width='2' filter='url(#shadow)'/>"
+            f"fill='{PALETTE['card']}' stroke='{color}' "
+            "stroke-width='2' filter='url(#shadow)'/>"
         ),
         f"<rect x='{x}' y='{y}' width='{width}' height='12' rx='6' fill='{color}'/>",
         _text(x + 20, y + 46, title, 19, "800", "start"),
@@ -363,7 +415,8 @@ def _metric_card(x: int, y: int, label: str, value: int, color: str) -> str:
         [
             (
                 f"<rect x='{x}' y='{y}' width='148' height='104' rx='10' "
-                f"fill='#ffffff' stroke='{color}' stroke-width='2' filter='url(#shadow)'/>"
+                f"fill='{PALETTE['card']}' stroke='{color}' "
+                "stroke-width='2' filter='url(#shadow)'/>"
             ),
             _text(x + 24, y + 38, label, 16, "700", "start", PALETTE["muted"]),
             _text(x + 24, y + 76, str(value), 34, "800", "start", color),
@@ -383,7 +436,7 @@ def _ranked_rows(x: int, y: int, nodes: list[KnowledgeNode]) -> list[str]:
                 f"<a href='../../../{escape(path.as_posix())}'>",
                 (
                     f"<rect x='{x}' y='{row_y}' width='520' height='34' rx='7' "
-                    f"fill='#ffffff' stroke='{PALETTE['line']}'/>"
+                    f"fill='{PALETTE['card']}' stroke='{PALETTE['line']}'/>"
                 ),
                 _text(x + 14, row_y + 22, _truncate(title, 46), 14, "700", "start"),
                 _text(
@@ -411,7 +464,7 @@ def _concept_rows(x: int, y: int, concepts: tuple[tuple[ConceptId, int], ...]) -
             [
                 (
                     f"<rect x='{x}' y='{row_y}' width='{width}' height='34' rx='7' "
-                    f"fill='#ffffff' stroke='{PALETTE['line']}'/>"
+                    f"fill='{PALETTE['card']}' stroke='{PALETTE['line']}'/>"
                 ),
                 (
                     f"<rect x='{x}' y='{row_y}' width='{fill_width}' height='34' "
@@ -443,7 +496,8 @@ def _event_card(x: int, y: int, event: TimelineEvent, color: str) -> str:
             f"<a href='../../../{escape(path.as_posix())}'>",
             (
                 f"<rect x='{x}' y='{y}' width='880' height='56' rx='9' "
-                f"fill='#ffffff' stroke='{PALETTE['line']}' filter='url(#shadow)'/>"
+                f"fill='{PALETTE['card']}' stroke='{PALETTE['line']}' "
+                "filter='url(#shadow)'/>"
             ),
             (
                 f"<rect x='{x + 18}' y='{y + 16}' width='82' height='24' "
@@ -482,7 +536,7 @@ def _type_badges(x: int, y: int, counts: Counter[str]) -> list[str]:
             [
                 (
                     f"<rect x='{cursor}' y='{y}' width='{width}' height='38' "
-                    f"rx='19' fill='#ffffff' stroke='{color}'/>"
+                    f"rx='19' fill='{PALETTE['card']}' stroke='{color}'/>"
                 ),
                 _text(cursor + 18, y + 24, f"{label}: {count}", 14, "800", "start", color),
             ]

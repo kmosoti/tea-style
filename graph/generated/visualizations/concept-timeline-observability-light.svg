@@ -12,7 +12,7 @@
 <text x='52' y='96' font-family='Inter, ui-sans-serif, system-ui, sans-serif' font-size='16' font-weight='500' text-anchor='start' fill='#64748b'>6 dated event(s) associated with this concept.</text>
 <line x1='168' y1='128' x2='168' y2='544' stroke='#cbd5e1' stroke-width='4'/>
 <circle cx='168' cy='142' r='10' fill='#15803d'/>
-<text x='126' y='147' font-family='Inter, ui-sans-serif, system-ui, sans-serif' font-size='14' font-weight='700' text-anchor='end' fill='#172033'>2026-06-07</text>
+<text x='126' y='147' font-family='Inter, ui-sans-serif, system-ui, sans-serif' font-size='14' font-weight='700' text-anchor='end' fill='#172033'>2026-06-06</text>
 <a href='../../../kb/antipatterns/hallucinated-operational-state.md'>
 <rect x='204' y='114' width='880' height='56' rx='9' fill='#ffffff' stroke='#cbd5e1' filter='url(#shadow)'/>
 <rect x='222' y='130' width='82' height='24' rx='12' fill='#15803d' opacity='0.12'/>
@@ -21,7 +21,7 @@
 <text x='322' y='157' font-family='Inter, ui-sans-serif, system-ui, sans-serif' font-size='12' font-weight='600' text-anchor='start' fill='#64748b'>antipattern - antipattern:hallucinated-operational-state</text>
 </a>
 <circle cx='168' cy='216' r='10' fill='#15803d'/>
-<text x='126' y='221' font-family='Inter, ui-sans-serif, system-ui, sans-serif' font-size='14' font-weight='700' text-anchor='end' fill='#172033'>2026-06-07</text>
+<text x='126' y='221' font-family='Inter, ui-sans-serif, system-ui, sans-serif' font-size='14' font-weight='700' text-anchor='end' fill='#172033'>2026-06-06</text>
 <a href='../../../kb/concepts/observability.md'>
 <rect x='204' y='188' width='880' height='56' rx='9' fill='#ffffff' stroke='#cbd5e1' filter='url(#shadow)'/>
 <rect x='222' y='204' width='82' height='24' rx='12' fill='#15803d' opacity='0.12'/>
@@ -30,7 +30,7 @@
 <text x='322' y='231' font-family='Inter, ui-sans-serif, system-ui, sans-serif' font-size='12' font-weight='600' text-anchor='start' fill='#64748b'>concept - concept:observability</text>
 </a>
 <circle cx='168' cy='290' r='10' fill='#15803d'/>
-<text x='126' y='295' font-family='Inter, ui-sans-serif, system-ui, sans-serif' font-size='14' font-weight='700' text-anchor='end' fill='#172033'>2026-06-07</text>
+<text x='126' y='295' font-family='Inter, ui-sans-serif, system-ui, sans-serif' font-size='14' font-weight='700' text-anchor='end' fill='#172033'>2026-06-06</text>
 <a href='../../../kb/examples/splunk-health-state.md'>
 <rect x='204' y='262' width='880' height='56' rx='9' fill='#ffffff' stroke='#cbd5e1' filter='url(#shadow)'/>
 <rect x='222' y='278' width='82' height='24' rx='12' fill='#15803d' opacity='0.12'/>
@@ -39,7 +39,7 @@
 <text x='322' y='305' font-family='Inter, ui-sans-serif, system-ui, sans-serif' font-size='12' font-weight='600' text-anchor='start' fill='#64748b'>example - example:observability:splunk-health-state</text>
 </a>
 <circle cx='168' cy='364' r='10' fill='#15803d'/>
-<text x='126' y='369' font-family='Inter, ui-sans-serif, system-ui, sans-serif' font-size='14' font-weight='700' text-anchor='end' fill='#172033'>2026-06-07</text>
+<text x='126' y='369' font-family='Inter, ui-sans-serif, system-ui, sans-serif' font-size='14' font-weight='700' text-anchor='end' fill='#172033'>2026-06-06</text>
 <a href='../../../docs/maps/observability.md'>
 <rect x='204' y='336' width='880' height='56' rx='9' fill='#ffffff' stroke='#cbd5e1' filter='url(#shadow)'/>
 <rect x='222' y='352' width='82' height='24' rx='12' fill='#15803d' opacity='0.12'/>
@@ -48,7 +48,7 @@
 <text x='322' y='379' font-family='Inter, ui-sans-serif, system-ui, sans-serif' font-size='12' font-weight='600' text-anchor='start' fill='#64748b'>map - map:observability:overview</text>
 </a>
 <circle cx='168' cy='438' r='10' fill='#15803d'/>
-<text x='126' y='443' font-family='Inter, ui-sans-serif, system-ui, sans-serif' font-size='14' font-weight='700' text-anchor='end' fill='#172033'>2026-06-07</text>
+<text x='126' y='443' font-family='Inter, ui-sans-serif, system-ui, sans-serif' font-size='14' font-weight='700' text-anchor='end' fill='#172033'>2026-06-06</text>
 <a href='../../../kb/notes/evidence/evidence-over-vanity-metrics.md'>
 <rect x='204' y='410' width='880' height='56' rx='9' fill='#ffffff' stroke='#cbd5e1' filter='url(#shadow)'/>
 <rect x='222' y='426' width='82' height='24' rx='12' fill='#15803d' opacity='0.12'/>
@@ -57,7 +57,7 @@
 <text x='322' y='453' font-family='Inter, ui-sans-serif, system-ui, sans-serif' font-size='12' font-weight='600' text-anchor='start' fill='#64748b'>note - note:evidence:evidence-over-vanity-metrics</text>
 </a>
 <circle cx='168' cy='512' r='10' fill='#15803d'/>
-<text x='126' y='517' font-family='Inter, ui-sans-serif, system-ui, sans-serif' font-size='14' font-weight='700' text-anchor='end' fill='#172033'>2026-06-07</text>
+<text x='126' y='517' font-family='Inter, ui-sans-serif, system-ui, sans-serif' font-size='14' font-weight='700' text-anchor='end' fill='#172033'>2026-06-06</text>
 <a href='../../../kb/notes/observability/operators-should-not-hallucinate-system-state.md'>
 <rect x='204' y='484' width='880' height='56' rx='9' fill='#ffffff' stroke='#cbd5e1' filter='url(#shadow)'/>
 <rect x='222' y='500' width='82' height='24' rx='12' fill='#15803d' opacity='0.12'/>

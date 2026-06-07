@@ -4,8 +4,8 @@ title: Graph Linking Standard
 type: standard
 domain: repo-wide
 status: active
-created: 2026-06-07
-updated: 2026-06-07
+created: 2026-06-06
+updated: 2026-06-06
 summary: >
   Defines when to create semantic graph edges and when to rely on Markdown links.
 concepts:

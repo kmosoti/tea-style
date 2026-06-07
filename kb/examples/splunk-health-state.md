@@ -4,8 +4,8 @@ title: Splunk Health State
 type: example
 domain: observability
 status: active
-created: 2026-06-07
-updated: 2026-06-07
+created: 2026-06-06
+updated: 2026-06-06
 summary: >
   Health should be reported as layered evidence, not a single unsupported label.
 concepts:

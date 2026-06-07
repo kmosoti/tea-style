@@ -4,8 +4,8 @@ title: Adopt Markdown-Native Doctrine Graph
 type: decision
 domain: repo-wide
 status: active
-created: 2026-06-07
-updated: 2026-06-07
+created: 2026-06-06
+updated: 2026-06-06
 summary: >
   Markdown notes and frontmatter are the source of truth; graph artifacts are generated from visible source files.
 concepts:

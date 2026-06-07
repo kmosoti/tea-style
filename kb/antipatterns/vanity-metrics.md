@@ -4,8 +4,8 @@ title: Vanity Metrics
 type: antipattern
 domain: observability
 status: active
-created: 2026-06-07
-updated: 2026-06-07
+created: 2026-06-06
+updated: 2026-06-06
 summary: >
   Metrics that show activity without improving decisions, diagnosis, or safety.
 concepts:
